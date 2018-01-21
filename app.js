@@ -1,55 +1,129 @@
+/*
+TO DO:
+Will have a drop down menu to select currencies to calculate average
+Account for json response errors after fetching
 
-class fetchCrypto {
-    // powered by cryptocompare - add message later to UI
-    // gets info from the API link.
-    constructor() {
-    }
+
+how app will work:
+user searches for a coin (.CoinName or .Symbol) and selects a currency to display details in. (USD, EUR, CAD)
+fetchDescription gets the Image and other basic data from the search input.
+fetchAverage gets the statistics from the .Symbol and currency (USD, EUR, CAD)
+
+display all relevant information for the user.
+
+
+
+create area to display fetched average data
+
+
+*/
+
+
+
+{ // IIFE: gets info from the API link. Uses UIcontroller functions to update interface.
     
-    getJSON(apiURL, coinName) {
+    function fetchDescription(coinName, curInput) {
+        
+        let apiURL = "https://min-api.cryptocompare.com/data/all/coinlist";
+        
         fetch(apiURL, {mode:"cors"}).then(function(response) { // mode:"cors" required for https links
-            console.log("fetched");
             return response.json();
         }).then(function(response) {
+            console.log("fetchDescription: Fetched");
+            
 //            console.log(response);
-            console.log(response.Data);
+//            console.log(response.Data);
             
             // iterate though response.Data for the .CoinName or .Symbol that matches coinName attr.
-            // later to do: increase speed of search.
             for (let DataEntry in response.Data) {
                 let dataObj = response.Data[DataEntry];
                 if (dataObj.CoinName.toUpperCase() === coinName || dataObj.Symbol === coinName) {
-                    document.querySelector(".cryptologo").src = response.BaseImageUrl + dataObj.ImageUrl;
-                    return;
+                    
+                    return {
+                        BaseImageUrl: response.BaseImageUrl,
+                        CoinName: dataObj.CoinName,
+                        FullName: dataObj.FullName,
+                        ImageUrl: dataObj.ImageUrl,
+                        Symbol: dataObj.Symbol,
+                        
+                    };
                 }
             }
-            console.log("Nothing found");
+            
+            return -1;
+            
+        }).then(function(obj) {
+            if (obj !== -1) {
+                updatePicture(obj.BaseImageUrl, obj.ImageUrl);
+                fetchAverage(obj.Symbol, curInput);
+            } else {
+                console.log("fetchDescription: Invalid CoinName or Symbol");
+            }
+            
+        }).catch(function(err) {
+            console.log(err);
+        });
+    }
+    
+    function fetchAverage(coin = "BTC", cur = "USD", exchange = "Coinbase") { // set cur by dropdown: USD, CAD, EUR.
+        
+        let apiURL = `https://min-api.cryptocompare.com/data/generateAvg?fsym=${coin}&tsym=${cur}&e=${exchange}`;
+        
+        fetch(apiURL, {mode:"cors"}).then(function(response) {
+            return response.json();
+        }).then(function(response) {
+            if (response.Response === "Error") {
+                console.log("fetchAverage: API Url was Invalid, likely no exchange for that currency.");
+            } else {
+                console.log("Fetched Averages");
+                console.log(response);
+            }
+            
+//            console.log(response.Display);
         }).catch(function(err) {
             console.log(err);
         });
     }
 }
 
-class UIcontroller {
-    // this class handles the UI updating.
-    constructor() {
-        document.querySelector(".btn-fetch").addEventListener("click", () => {
-            let toSearch = document.querySelector(".coin-search-input").value.toUpperCase();
-            console.log(toSearch);
-            if (toSearch.length !== 0){
-                let fetch = new fetchCrypto();
-                fetch.getJSON("https://min-api.cryptocompare.com/data/all/coinlist", toSearch);
+{ // IIFE: UIcontroller, functions that handle UI updates
+    
+    let DOMstr = {
+        coinSearchInput: ".coin-search-input",
+        curInput: ".cur__input",
+        btnInput: ".btn-fetch",
+        
+        coinLogo: ".coinlogo"
+    }
+    
+    function getInput() {
+        // gets all user input and returns an object
+        return {
+            searchInput: document.querySelector(DOMstr.coinSearchInput).value.toUpperCase(),
+            curInput: document.querySelector(DOMstr.curInput).value
+        }
+    }
+    
+    function buttonInit() { 
+        // initializes all button functionality
+        document.querySelector(DOMstr.btnInput).addEventListener("click", () => {
+            
+            var allInput = getInput();
+            
+            if (allInput.searchInput.length !== 0){
+                fetchDescription(allInput.searchInput, allInput.curInput);
             } else {
                 console.log("input was empty!");
             }
         });
     }
+    
+    function updatePicture(baseImageUrl, imageUrl) {
+        document.querySelector(DOMstr.coinLogo).src = baseImageUrl + imageUrl;
+    }
+    
+    
+    
 }
 
-//class controller {
-//    // this class handles user interaction with the UI.
-//    constructor() {
-//        ;
-//    }
-//}
-
-new UIcontroller();
+buttonInit();
