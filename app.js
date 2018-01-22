@@ -15,14 +15,14 @@ display all relevant information for the user.
 
 create area to display fetched average data
 
-
+Averages fetched from CoinBase. API provided by Cryptocompare. Add QuadrigaCX implementation and some other big exchanges
 */
 
 
 
 { // IIFE: gets info from the API link. Uses UIcontroller functions to update interface.
     
-    function fetchDescription(coinName, curInput) {
+    function fetchDescription(coinName, exchangeInput, curInput) {
         
         let apiURL = "https://min-api.cryptocompare.com/data/all/coinlist";
         
@@ -55,7 +55,7 @@ create area to display fetched average data
         }).then(function(obj) {
             if (obj !== -1) {
                 updatePicture(obj.BaseImageUrl, obj.ImageUrl);
-                fetchAverage(obj.Symbol, curInput);
+                fetchAverage(obj.Symbol, exchangeInput, curInput);
             } else {
                 console.log("fetchDescription: Invalid CoinName or Symbol");
             }
@@ -65,7 +65,7 @@ create area to display fetched average data
         });
     }
     
-    function fetchAverage(coin = "BTC", cur = "USD", exchange = "Coinbase") { // set cur by dropdown: USD, CAD, EUR.
+    function fetchAverage(coin = "BTC", exchange = "Coinbase", cur = "USD") { // set cur by dropdown: USD, CAD, EUR.
         
         let apiURL = `https://min-api.cryptocompare.com/data/generateAvg?fsym=${coin}&tsym=${cur}&e=${exchange}`;
         
@@ -90,6 +90,7 @@ create area to display fetched average data
     
     let DOMstr = {
         coinSearchInput: ".coin-search-input",
+        exchangeInput: ".exchange__input",
         curInput: ".cur__input",
         btnInput: ".btn-fetch",
         
@@ -100,7 +101,9 @@ create area to display fetched average data
         // gets all user input and returns an object
         return {
             searchInput: document.querySelector(DOMstr.coinSearchInput).value.toUpperCase(),
+            exchangeInput: document.querySelector(DOMstr.exchangeInput).value,
             curInput: document.querySelector(DOMstr.curInput).value
+            
         }
     }
     
@@ -111,7 +114,7 @@ create area to display fetched average data
             var allInput = getInput();
             
             if (allInput.searchInput.length !== 0){
-                fetchDescription(allInput.searchInput, allInput.curInput);
+                fetchDescription(allInput.searchInput, allInput.exchangeInput, allInput.curInput);
             } else {
                 console.log("input was empty!");
             }
