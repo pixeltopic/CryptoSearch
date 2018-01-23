@@ -12,6 +12,8 @@ implement:
 Old data is still shown if your first search works, but next search fails. need fix - use js toast)
 
 Averages fetched 7 different exchanges. API provided by Cryptocompare.
+
+add footer to html page with credits (api, css) also add toast popup on error
 */
 
 
