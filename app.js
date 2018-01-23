@@ -7,11 +7,9 @@ fetchAverage gets the statistics from the .Symbol and currency (USD, EUR, CAD)
 display all relevant information for the user.
 
 implement:
-when a user enters a new search, insert HTML for the search. User can click x to delete the search entry, but
-it requires a custom ID. If the search is invalid, show an error message.
 
 (currently, if search failed, there is no noticable message besides a console log, and
-Old data is still shown if your first search works, but next search fails. need fix)
+Old data is still shown if your first search works, but next search fails. need fix - use js toast)
 
 Averages fetched 7 different exchanges. API provided by Cryptocompare.
 */
