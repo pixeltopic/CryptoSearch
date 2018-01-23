@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <link href="https://fonts.googleapis.com/css?family=Lato:100,300,600" rel="stylesheet" type="text/css">
+<!--        Note: When Publishing to website, remove the https: from the css URL.-->
         <link href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css">
         <link type="text/css" rel="stylesheet" href="style.css">
         
@@ -35,6 +36,9 @@
 
             <button class="btn-fetch"><i class="ion-ios-download-outline"></i>Get Coin Stats</button>
             
+            <div id="search-snackbar">Search Didn't Find Anything!</div>
+<!--            <div id="invalid-inputs">No Exchange for Selected Inputs!</div>-->
+            
             
             
             <div class="item clearfix" id="ALL-SEARCH-DETAILS">
@@ -61,4 +65,12 @@
         
         <script src="app.js"></script>
     </body>
+    
+    <footer>
+        <p>Powered by CryptoCompare API.</p>
+<!--
+        <p>Contact information: <a href="mailto:someone@example.com">
+        someone@example.com</a>.</p>
+-->
+    </footer>
 </html>

@@ -57,6 +57,11 @@ add footer to html page with credits (api, css) also add toast popup on error
                 fetchAverage(obj.Symbol, exchangeInput, curInput);
             } else {
                 console.log("fetchDescription: Invalid CoinName or Symbol");
+                
+                var invalidSearch = document.getElementById("search-snackbar");
+                invalidSearch.textContent = "Search Didn't Find Anything!";
+                invalidSearch.className = "show";
+                setTimeout(function(){ invalidSearch.className = invalidSearch.className.replace("show", ""); }, 3000);
             }
             
         }).catch(function(err) {
@@ -73,6 +78,12 @@ add footer to html page with credits (api, css) also add toast popup on error
         }).then(function(response) {
             if (response.Response === "Error") {
                 console.log("fetchAverage: API Url was Invalid, likely no exchange for that currency.");
+                
+                var invalidSearch = document.getElementById("search-snackbar");
+                invalidSearch.textContent = "No Exchange for Selected Inputs!";
+                invalidSearch.className = "show";
+                setTimeout(function(){ invalidSearch.className = invalidSearch.className.replace("show", ""); }, 3000);
+                
                 return -1;
             } else {
                 console.log("Fetched Averages");
@@ -96,6 +107,24 @@ add footer to html page with credits (api, css) also add toast popup on error
         }).then(function(obj) {
             if (obj !== -1) {
                 updateStatsDetails(obj);
+                
+                var successSearch = document.getElementById("search-snackbar");
+                successSearch.textContent = "Info Updated Successfully";
+                successSearch.className = "show";
+                setTimeout(function(){ successSearch.className = successSearch.className.replace("show", ""); }, 3000);
+                
+            } else {
+                let invalidSearchObj = {
+                    PRICE: "N/A",
+                    CHANGE24HOUR: "N/A",
+                    CHANGEPCT24HOUR: 0,
+                    VOLUME24HOUR: "N/A",
+                    VOLUME24HOURTO: 0,
+                    OPEN24HOUR: "N/A",
+                    LOW24HOUR: 0,
+                    HIGH24HOUR: 0
+                }
+                updateStatsDetails(invalidSearchObj);
             }
             
         }).catch(function(err) {
