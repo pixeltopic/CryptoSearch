@@ -2,6 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://fonts.googleapis.com/css?family=Lato:100,300,600" rel="stylesheet" type="text/css">
 <!--        Note: When Publishing to website, remove the https: from the css URL.-->
         <link href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css">
@@ -13,25 +14,18 @@
     <body>
         <div class="wrapper clearfix">
             
-            <input type="text" placeholder="Search Crypto" class="coin-search-input">
+            <input type="text" placeholder="Coin Name" class="coin-search-input">
             
             <select class="exchange__input">
+<!--
                 <option value="CoinBase" selected>CoinBase</option>
-                <option value="GDAX">GDAX</option>
-                <option value="BitTrex">BitTrex</option>
-                <option value="Kraken">Kraken</option>
-                <option value="Gemini">Gemini</option>
-                <option value="QuadrigaCX">QuadrigaCX</option>
-                <option value="Binance">Binance</option>
+-->
             </select>
             
             <select class="cur__input">
-                <option value="USD" selected>USD</option>
+<!--
                 <option value="CAD">CAD</option>
-                <option value="EUR">EUR</option>
-                <option value="USDT">USDT</option>
-                <option value="BTC">BTC</option>
-                <option value="ETH">ETH</option>
+-->
             </select>
 
             <button class="btn-fetch"><i class="ion-ios-download-outline"></i>Get Coin Stats</button>
@@ -55,9 +49,7 @@
                     <div class="stats__detail" id="TIMESTAMP">Timestamp: N/A</div>
                     
                     <img src="handtinytrans.gif" alt="Coin Logo" class="coinlogo">
-<!--                    <div class="item__delete">-->
-<!--                        <button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button>-->
-<!--                    </div>-->
+
                 </div>
             </div>
             

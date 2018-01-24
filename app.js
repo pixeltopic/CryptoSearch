@@ -6,14 +6,7 @@ fetchAverage gets the statistics from the .Symbol and currency (USD, EUR, CAD)
 
 display all relevant information for the user.
 
-implement:
-
-(currently, if search failed, there is no noticable message besides a console log, and
-Old data is still shown if your first search works, but next search fails. need fix - use js toast)
-
 Averages fetched 7 different exchanges. API provided by Cryptocompare.
-
-add footer to html page with credits (api, css) also add toast popup on error
 */
 
 
@@ -156,6 +149,34 @@ add footer to html page with credits (api, css) also add toast popup on error
         }
     }
     
+    function dropdownInit() {
+        
+        let exchangeOptions = ["CoinBase", "GDAX", "BitTrex", "Kraken", "Gemini", "QuadrigaCX", "Binance"];
+        let curOptions = ["USD", "CAD", "EUR", "USDT", "BTC", "ETH"];
+        
+        
+        let exchangeDropdown = document.querySelector(DOMstr.exchangeInput);
+        let curDropdown = document.querySelector(DOMstr.curInput);
+        
+        for (let i = 0; i < exchangeOptions.length; i++) {
+            if (i === 0) {
+                exchangeDropdown.innerHTML += `<option value="${exchangeOptions[i]}" selected>${exchangeOptions[i]}</option>`;
+            } else {
+                exchangeDropdown.innerHTML += `<option value="${exchangeOptions[i]}">${exchangeOptions[i]}</option>`;
+            }
+        }
+        
+        for (let i = 0; i < curOptions.length; i++) {
+            if (i === 0) {
+                curDropdown.innerHTML += `<option value="${curOptions[i]}" selected>${curOptions[i]}</option>`;
+            } else {
+                curDropdown.innerHTML += `<option value="${curOptions[i]}">${curOptions[i]}</option>`;
+            }
+        }
+        
+        
+    }
+    
     function buttonInit() { 
         // initializes all button functionality
         document.querySelector(DOMstr.btnInput).addEventListener("click", () => {
@@ -166,6 +187,10 @@ add footer to html page with credits (api, css) also add toast popup on error
                 fetchDescription(allInput.searchInput, allInput.exchangeInput, allInput.curInput);
             } else {
                 console.log("input was empty!");
+                var emptySearch = document.getElementById("search-snackbar");
+                emptySearch.textContent = "Input Is Empty.";
+                emptySearch.className = "show";
+                setTimeout(function(){ emptySearch.className = emptySearch.className.replace("show", ""); }, 3000);
             }
         });
     }
@@ -198,3 +223,4 @@ add footer to html page with credits (api, css) also add toast popup on error
 }
 
 buttonInit();
+dropdownInit();

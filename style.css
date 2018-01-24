@@ -4,7 +4,7 @@
 
 #ALL-SEARCH-DETAILS {
     position: relative;
-    width: 900px;
+    width: 90%;
     border: 1px solid #e7e7e7;
     padding: 10px;
     margin: 20px;
@@ -18,7 +18,7 @@
     font-family: "Lato";
     text-align: : center;
     padding: 10px;
-    width: 200px;
+    width: 20%;
     height: 44px;
     text-transform: uppercase;
     font-weight: 300;
@@ -57,7 +57,7 @@ body {
 }
 
 .wrapper {
-    width: 1000px;
+    width: 80%;
     position: relative;
     top: 50%;
     left: 50%;
@@ -69,7 +69,7 @@ body {
 
 button {
     position: relative;
-    width: 250px;
+    width: 30%;
 /*    left: 50%;*/
 /*    transform: translateX(-50%);*/
     color: #555;
@@ -120,7 +120,7 @@ i {
     font-family: "Lato";
     text-align: : center;
     padding: 10px;
-    width: 100px;
+    width: 10%;
     height: 44px;
     text-transform: uppercase;
     font-weight: 300;
@@ -139,7 +139,7 @@ i {
     font-family: "Lato";
     text-align: : center;
     padding: 10px;
-    width: 175px;
+    width: 20%;
     height: 44px;
     text-transform: uppercase;
     font-weight: 300;
