@@ -36,23 +36,49 @@
             
             
             <div class="item clearfix" id="ALL-SEARCH-DETAILS">
-                <div class="stats__description" id="SEARCH-DETAILS"></div>
-                <div class="right clearfix">
-<!--                    <div class="stats__detail" id="SEARCH-DETAILS"></div>-->
-                    <div class="stats__detail" id="PRICE">Price Just Now: N/A</div>
-<!--                    CHANGE24HOUR also include CHANGEPCT24HOUR-->
-                    <div class="stats__detail" id="CHANGE24HOUR">Change 24H: N/A</div>
-                    <div class="stats__detail" id=VOLUME24HOUR>Volume 24H: N/A</div>
-<!--                    <div class="stats__detail" id=VOLUME24HOURTO>Volume 24H (Converted): N/A</div>-->
-                    <div class="stats__detail" id="OPEN24HOUR">Open 24H: N/A</div>
-                    <div class="stats__detail" id="LOWHIGH24HOUR">Low/High 24H: N/A</div>
-                    <div class="stats__detail" id="TIMESTAMP">Timestamp: N/A</div>
-                    
-                    <img src="handtinytrans.gif" alt="Coin Logo" class="coinlogo">
+                <table class="description_table">
+                    <tr>
+                        <th>Coin</th>
+                        <th>Exchange</th>
+                        <th>Currency</th>
 
-                </div>
+                    </tr>
+                    <tr>
+                        <td><div class="stats__description" id="COINNAME"></div></td>
+                        <td><div class="stats__description" id="EXCHANGE"></div></td> 
+                        <td><div class="stats__description" id="CURRENCY"></div></td> 
+                    </tr>
+                </table>
+                <img src="handtinytrans.gif" alt="Coin Logo" class="coinlogo">
+
+
+                <table class="data_table">
+                    <tr>
+                        <td>Price Just Now</td>
+                        <td><div class="stats__detail" id="PRICE"></div></td> 
+                    </tr>
+                    <tr>
+                        <td>Change 24H</td>
+                        <td><div class="stats__detail" id="CHANGE24HOUR"></div></td>
+                    </tr>
+                    <tr>
+                        <td>Volume 24H</td>
+                        <td><div class="stats__detail" id=VOLUME24HOUR></div></td>
+                    </tr>
+                    <tr>
+                        <td>Open 24H</td>
+                        <td><div class="stats__detail" id="OPEN24HOUR"></div></td>
+                    </tr>
+                    <tr>
+                        <td>Low/High 24H</td>
+                        <td><div class="stats__detail" id="LOWHIGH24HOUR"></div></td>
+                    </tr>
+                    <tr>
+                        <td>Timestamp</td>
+                        <td><div class="stats__detail" id="TIMESTAMP"></div></td> 
+                    </tr>
+                </table>
             </div>
-            
         </div>
         
         <script src="app.js"></script>
@@ -60,9 +86,6 @@
     
     <footer>
         <p>Powered by CryptoCompare API.</p>
-<!--
-        <p>Contact information: <a href="mailto:someone@example.com">
-        someone@example.com</a>.</p>
--->
+        <p><a href="https://github.com/pixeltopic">My Github</a>.</p>
     </footer>
 </html>

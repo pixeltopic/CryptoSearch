@@ -1,8 +1,8 @@
 /*
 how app will work:
-user searches for a coin (.CoinName or .Symbol) and selects a currency to display details in. (USD, EUR, CAD)
+user searches for a coin (.CoinName or .Symbol) and selects a currency to display details in. (USD, EUR, CAD...)
 fetchDescription gets the Image and other basic data from the search input.
-fetchAverage gets the statistics from the .Symbol and currency (USD, EUR, CAD)
+fetchAverage gets the statistics from the .Symbol and currency (USD, EUR, CAD...)
 
 display all relevant information for the user.
 
@@ -196,7 +196,11 @@ Averages fetched 7 different exchanges. API provided by Cryptocompare.
     }
     
     function updateSearchDetails(coin, coinSymbol, exchange, cur) {
-        document.getElementById("SEARCH-DETAILS").textContent = `Coin: ${coin} (${coinSymbol}) | Exchange: ${exchange} | Currency: ${cur}`;
+//        document.getElementById("SEARCH-DETAILS").textContent = `Coin: ${coin} (${coinSymbol}) | Exchange: ${exchange} | Currency: ${cur}`;
+        document.getElementById("COINNAME").textContent = coin;
+        document.getElementById("EXCHANGE").textContent = exchange;
+        document.getElementById("CURRENCY").textContent = cur;
+        
     }
     
     function updatePicture(baseImageUrl, imageUrl) {
@@ -208,16 +212,16 @@ Averages fetched 7 different exchanges. API provided by Cryptocompare.
 //        let details = document.querySelectorAll(DOMstr.statsDetail);
 //        let detailArr = Array.from(details);
         
-        document.getElementById("PRICE").textContent = `Price Just Now: ${obj.PRICE}`;
-        document.getElementById("CHANGE24HOUR").textContent = `Change 24H: ${obj.CHANGE24HOUR} (${obj.CHANGEPCT24HOUR}%)`;
-        document.getElementById("VOLUME24HOUR").textContent = `Volume 24H: ${obj.VOLUME24HOUR} (${obj.VOLUME24HOURTO})`;
-        document.getElementById("OPEN24HOUR").textContent = `Open 24H: ${obj.OPEN24HOUR}`;
-        document.getElementById("LOWHIGH24HOUR").textContent = `Low/High 24H: ${obj.LOW24HOUR} - ${obj.HIGH24HOUR}`;
+        document.getElementById("PRICE").textContent = `${obj.PRICE}`;
+        document.getElementById("CHANGE24HOUR").textContent = `${obj.CHANGE24HOUR} (${obj.CHANGEPCT24HOUR}%)`;
+        document.getElementById("VOLUME24HOUR").textContent = `${obj.VOLUME24HOUR} (${obj.VOLUME24HOURTO})`;
+        document.getElementById("OPEN24HOUR").textContent = `${obj.OPEN24HOUR}`;
+        document.getElementById("LOWHIGH24HOUR").textContent = `${obj.LOW24HOUR} - ${obj.HIGH24HOUR}`;
         
         let now = new Date();
         let timestamp = `${now.getHours()}:${now.getMinutes()}:${now.getSeconds()} - ${now.getDate()}-${now.getMonth()+1}-${now.getFullYear()}`
         
-        document.getElementById("TIMESTAMP").textContent = `Timestamp: ${timestamp}`;
+        document.getElementById("TIMESTAMP").textContent = `${timestamp}`;
     }
     
 }

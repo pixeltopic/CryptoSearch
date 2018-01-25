@@ -1,2 +1,3 @@
 # CryptoSearch
-Currently Incompatible with mobile, safari, and IE. Should work on latest version of Chrome, Firefox, or Edge.
+Currently Incompatible with Safari and IE. Should work on latest version of Chrome, Firefox, or Edge. 
+Site somewhat compatible with mobile, but not recommended at the moment.
